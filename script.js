@@ -85,7 +85,7 @@ for (var i=0; i<btn.length;i++){
 document.onkeydown = function(event) {
 
     /* Numbers 0 - 9 */
-    if (event.which == 48) {
+    if (event.which == 48 && !event.shiftKey) {
         display.innerText += 0;
     }
     if (event.which == 49) {
@@ -112,8 +112,17 @@ document.onkeydown = function(event) {
     if (event.which == 56 && !event.shiftKey)     {
         display.innerText += 8;
     }
-    if (event.which == 57) {
+    if (event.which == 57 && !event.shiftKey) {
         display.innerText += 9;
+    }
+    if (event.which == 57 && event.shiftKey) {
+        if (!operators.includes(display.innerText.slice(-1))) {
+            display.innerText += '*'
+        }
+        display.innerText += '(';
+    }
+    if (event.which == 48 && event.shiftKey) {
+        display.innerText += ')';
     }
     /* Show result with enter */
     if (event.which == 13) {
