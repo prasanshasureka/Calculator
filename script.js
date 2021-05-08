@@ -7,7 +7,7 @@
 var btn = document.getElementsByTagName('button');
 var display = document.getElementById('result');
 
-operators = ["+", "-", "*", "/"]
+operators = ["+", "-", "*", "/", "("]
 brace = []
 
 function calcFunc(){
@@ -116,10 +116,15 @@ document.onkeydown = function(event) {
         display.innerText += 9;
     }
     if (event.which == 57 && event.shiftKey) {
-        if (!operators.includes(display.innerText.slice(-1))) {
-            display.innerText += '*'
+        if (display.innerText == ''){
+            display.innerText += '(';
         }
-        display.innerText += '(';
+        else if (!operators.includes(display.innerText.slice(-1))) {
+            display.innerText += '*('
+        } else {
+            display.innerText += '(';
+        }
+        
     }
     if (event.which == 48 && event.shiftKey) {
         display.innerText += ')';
